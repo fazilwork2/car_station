@@ -7,10 +7,10 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-conectDb()
 
 const PORT = process.env.PORT || 3000
 
 
+conectDb()
 
-app.listen(PORT,()=>{console.log(`server run in ${PORT}`);})
+app.listen(PORT,()=>{console.log(`server run in ${PORT}`)})
