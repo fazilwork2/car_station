@@ -4,59 +4,59 @@ const mongoose = require("mongoose")
 
 const carsSchema = new mongoose.Schema({
     title:{
-        Type:String,
-        require:true,
+        type:String,
+        required:true,
         MinLength:[4,"char less then four"],
         MaxLength:[30,"char more then 30"]
     },
     Tanirovkasi:{
-        Type:Boolean,
-        require:true
+        type:Boolean,
+        required:true
     },
     price:{
-        Type:Number,
-        require:true,
+        type:Number,
+        required:true,
         min:[20000000],
         max:[10000000000]
     },
     marca:{
-        Type:String,
-        require:true,
+        type:String,
+        required:true,
         enum:["CHEVROLET","lamborghini","lada","ferrari"]
     },
     motor:{
-        Type:Number,
-        require:true,
+        type:Number,
+        required:true,
         MinLength:[1,"char less then four"],
         MaxLength:[30,"char more then 30"]
     },
     year:{
-        Type:Date,
-        require:true,
+        type:Date,
+        required:true,
         min: 0,
-        max: new Date().getFullYear()
+        max: new Date()
     },
     color:{
-        Type:String,
-        require:true,
+        type:String,
+        required:true,
         MinLength:[2,"char less then four"],
         MaxLength:[30,"char more then 30"]
     },
     Distance:{
-        Type:Number,
-        require:true,
-        MinLength:[4,"char less then four"],
-        MaxLength:[30,"char more then 30"]
+        type:Number,
+        required:true,
+        MinLength:[4200,"char less then four"],
+        MaxLength:[300000,"char more then 30"]
     },
     Gearbook:{
-        Type:String,
-        require:true,
+        type:String,
+        required:true,
         enum:["Avtomat karobka","mahanik karobka"]
 
     },
     desc:{
-        Type:String,
-        require:true,
+        type:String,
+        required:true,
         MinLength:[15,"char less then four"],
         MaxLength:[300,"char more then 30"]
     },
