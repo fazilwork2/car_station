@@ -1,14 +1,15 @@
 const nodemailer = require("nodemailer");
 
 module.exports = async function emailServise(email, randomNumbers) {
-  const transport = nodemailer.createTransport({
-    host: "sandbox.smtp.mailtrap.io",
-    port: 2525,
-    auth: {
-      user: "3a878c7f3da67d",
-      pass: "91da4bcf58479b",
-    },
-  });
+const transport = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "fsadikov574@gmail.com",
+    pass: "zbcs xkkc vjpv wtrh " 
+  }
+});
+
+
 
   await transport.sendMail({
     from: "fsadikov574@gmail.com",

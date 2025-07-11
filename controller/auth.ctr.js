@@ -164,6 +164,61 @@ const changPassword = async (req, res, next) => {
     }
 }
 
+const forgatePassword = async (req, res, next) => {
+    try {
+        const {email} = req.body
+
+        const foundedUser = await AuthModel.findOne({ email })
+
+        if (!foundedUser) {
+            throw BaseError.UnAuthorized("you are not registered");
+        }
+
+
+        if (!decodePassword && foundedUser.isVerified) {
+            throw BaseError.UnAuthorized("Wrong password or email doesn't verified")
+        }
+
+        await AuthModel.updateOne({email:email},{isVerified:false})
+
+
+
+
+        res.status(200).json({
+            message: "code has been sended",
+            token
+        })
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+const logOut = async (req, res, next) => {
+    try {
+        const {email} = req.body
+
+        const foundedUser = await AuthModel.findOne({ email })
+
+
+       if (!foundedUser) {
+            throw BaseError.UnAuthorized("you are not registered");
+        }
+
+        await AuthModel.updateOne({email:email},{isVerified:false})
+
+
+
+        res.status(200).json({
+            message: "code has been sended",
+            token
+        })
+
+    } catch (error) {
+        next(error)
+    }
+}
 
 module.exports = {
     register,
@@ -171,4 +226,6 @@ module.exports = {
     resentPassword,
     login,
     changPassword,
+    forgatePassword,
+    logOut,
 }
