@@ -1,19 +1,25 @@
 const { carsModule } = require("../schema/cars.schema");
 
 const getAllCars = async (req, res, next) => {
-  const cars = await carsModule.find()
-  res.status(200).json({cars});
+  try {
+    const cars = await carsModule.find();
+    res.status(200).json({ cars });
+  } catch (error) {
+    next(error);
+  }
 };
 
 const getCarsbyCategori = async (req, res, next) => {
-  const {marca} = req.params
-  const cars = await carsModule.find({marca:marca})
-  res.status(200).json({cars});
+  try {
+    const { marca } = req.params;
+    const cars = await carsModule.find({ marca: marca });
+    res.status(200).json({ cars });
+  } catch (error) {
+    next(error);
+  }
 };
 
-
 const addcar = async (req, res, next) => {
-
   try {
     const {
       title,
@@ -41,11 +47,9 @@ const addcar = async (req, res, next) => {
       desc,
     });
 
-    res.status(201).json({message:"Added new car"});
+    res.status(201).json({ message: "Added new car" });
   } catch (error) {
-    return res.status(500).json({
-      message: error,
-    });
+    next(error);
   }
 };
 
@@ -56,14 +60,13 @@ const getOnecar = async (req, res, next) => {
 
     if (!car) {
       return res.status(404).json({
-        message: "bad reqvest"});
+        message: "bad reqvest",
+      });
     }
 
     res.status(200).json(car);
   } catch (error) {
-    return res.status(500).json({
-      message: error,
-    });
+    next(error);
   }
 };
 
@@ -108,9 +111,7 @@ const updatecar = async (req, res, next) => {
       message: "car updated",
     });
   } catch (error) {
-    return res.status(500).json({
-      message: error,
-    });
+    next(error);
   }
 };
 
@@ -131,9 +132,7 @@ const deletecar = async (req, res, next) => {
       message: "car deleted",
     });
   } catch (error) {
-    return res.status(500).json({
-      message: error,
-    });
+    next(error);
   }
 };
 
@@ -143,5 +142,5 @@ module.exports = {
   getOnecar,
   updatecar,
   deletecar,
-  getCarsbyCategori
+  getCarsbyCategori,
 };
