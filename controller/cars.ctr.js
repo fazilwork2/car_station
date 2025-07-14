@@ -3,8 +3,12 @@ const { carsModule } = require("../schema/cars.schema");
 const getAllCars = async (req, res, next) => {
   try {
     const cars = await carsModule.find();
+
+    logger.info(`code has been sended success: ${email}`);
     res.status(200).json({ cars });
+
   } catch (error) {
+    logger.error(`getAll cars error for ${req.body?.email} : ${error.message}`);
     next(error);
   }
 };
@@ -13,8 +17,11 @@ const getCarsbyCategori = async (req, res, next) => {
   try {
     const { marca } = req.params;
     const cars = await carsModule.find({ marca: marca });
+    
+    logger.info(`code has been sended success: ${email}`);
     res.status(200).json({ cars });
   } catch (error) {
+    logger.error(`get cars by categori error for ${req.body?.email} : ${error.message}`);
     next(error);
   }
 };
@@ -47,8 +54,11 @@ const addcar = async (req, res, next) => {
       desc,
     });
 
+    
+    logger.info(`code has been sended success: ${email}`);
     res.status(201).json({ message: "Added new car" });
   } catch (error) {
+    logger.error(`add care error for ${req.body?.email} : ${error.message}`);
     next(error);
   }
 };
@@ -64,8 +74,11 @@ const getOnecar = async (req, res, next) => {
       });
     }
 
+    
+    logger.info(`code has been sended success: ${email}`);
     res.status(200).json(car);
   } catch (error) {
+    logger.error(`get one care error for ${req.body?.email} : ${error.message}`);
     next(error);
   }
 };
@@ -107,10 +120,13 @@ const updatecar = async (req, res, next) => {
       desc,
     });
 
+    
+    logger.info(`code has been sended success: ${email}`);
     res.status(201).json({
       message: "car updated",
     });
   } catch (error) {
+    logger.error(`uppdate car error for ${req.body?.email} : ${error.message}`);
     next(error);
   }
 };
@@ -127,11 +143,13 @@ const deletecar = async (req, res, next) => {
     }
 
     await carModel.findByIdAndDelete(id);
-
+    
+    logger.info(`code has been sended success: ${email}`);
     res.status(200).json({
       message: "car deleted",
     });
   } catch (error) {
+    logger.error(`dealet car error for ${req.body?.email} : ${error.message}`);
     next(error);
   }
 };

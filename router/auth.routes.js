@@ -1,5 +1,5 @@
 const { Router } = require("express")
-const { register, login, verifyEmail, resentPassword, forgatePassword, changPassword, logOut } = require("../controller/auth.ctr")
+const { register, login, verifyEmail, resentPassword, forgatePassword, changPassword, logOut, myProfile } = require("../controller/auth.ctr")
 
 const authValidationMiddleware = require("../middleware/auth.validation.middleware")
 
@@ -12,4 +12,5 @@ authRouter.post("/forgatepassword", forgatePassword)
 authRouter.post("/changPassword", changPassword)
 authRouter.post("/login", authValidationMiddleware, login)
 authRouter.post("/logOut", logOut)
+authRouter.get("/myProfile",authValidationMiddleware,myProfile)
 module.exports = authRouter

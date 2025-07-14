@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken")
 const AuthModel = require("../schema/auth.register.schema")
 const BaseError = require("../error/baseError")
 const emailService = require("../utils/nodemailer")
+const logger = require("../utils/log")
+const { profile } = require("winston")
 
 const register = async (req, res, next) => {
     try {
@@ -33,11 +35,14 @@ const register = async (req, res, next) => {
 
         emailService(email, randomNumbers)  
 
+        logger.info(`register success: ${email}`);
+
         res.status(201).json({
             message: "Registered please verify your email!"
         })
 
     } catch (error) {
+        logger.error(`register error for ${req.body?.email}: ${error.message}`);
         next(error)
     }
 }
@@ -66,11 +71,14 @@ const verifyEmail = async (req, res, next) => {
 
         await AuthModel.findOneAndUpdate({ email: email }, { isVerified: true })
 
+        logger.info(`verified success: ${email}`);
+
         res.status(201).json({
             message: "Otp successfully verified"
         })
 
     } catch (error) {
+        logger.error(`verify error ${error.message}`);
         next(error)
     }
 }
@@ -93,14 +101,35 @@ const resentPassword = async (req, res, next) => {
 
         emailService(email, randomNumbers)
 
+        logger.info(`Resend new code success: ${email}`);
+
         res.status(201).json({
             message: "Resend new code please verify your email!"
         })
     } catch (error) {
+        logger.error(`resent password error for ${req.body?.email}: ${error.message}`);
         next(error)
     }
 }
+const myProfile = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const Profile = await carModel.findById(id);
 
+    if (!profile) {
+      return res.status(404).json({
+        message: "bad reqvest",
+      });
+    }
+
+    logger.info(`profile dound success: ${email}`);
+
+    res.status(200).json(car);
+  } catch (error) {
+    logger.error(`profile found error for ${req.body?.email} : ${error.message}`);
+    next(error);
+  }
+};
 
 const login = async (req, res, next) => {
     try {
@@ -121,12 +150,16 @@ const login = async (req, res, next) => {
         const payload = { email: foundedUser.email, id: foundedUser._id, role: foundedUser.role }
         const token = jwt.sign(payload, process.env.SEKRET_KEY, { expiresIn: "20m" })
 
+
+        logger.info(`Login success: ${email}`);
+
         res.status(200).json({
             message: "Success",
             token
         })
 
     } catch (error) {
+        logger.error(`login password error for ${req.body?.email} : ${error.message}`);
         next(error)
     }
 }
@@ -156,10 +189,13 @@ const changPassword = async (req, res, next) => {
 
         emailService(email, randomNumbers)
 
+        logger.info(`passwors chenget success: ${email}`);
+
         res.status(201).json({
             message: "succses"
         })
     } catch (error) {
+       logger.error(`chenget password error for ${req.body?.email} : ${error.message}`);
         next(error)
     }
 }
@@ -182,7 +218,7 @@ const forgatePassword = async (req, res, next) => {
         await AuthModel.updateOne({email:email},{isVerified:false})
 
 
-
+        logger.info(`code has been sended success: ${email}`);
 
         res.status(200).json({
             message: "code has been sended",
@@ -190,6 +226,7 @@ const forgatePassword = async (req, res, next) => {
         })
 
     } catch (error) {
+        logger.error(`forgate password error for ${req.body?.email} : ${error.message}`);
         next(error)
     }
 }
@@ -208,14 +245,16 @@ const logOut = async (req, res, next) => {
 
         await AuthModel.updateOne({email:email},{isVerified:false})
 
-
+        logger.info(`Loginout success: ${email}`);
+        
 
         res.status(200).json({
-            message: "code has been sended",
+            message: "succsess logout",
             token
         })
 
     } catch (error) {
+        logger.error(` logOut error for ${req.body?.email} : ${error.message}`);
         next(error)
     }
 }
@@ -228,4 +267,5 @@ module.exports = {
     changPassword,
     forgatePassword,
     logOut,
+    myProfile
 }
