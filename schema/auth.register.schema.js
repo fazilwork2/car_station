@@ -4,7 +4,7 @@ const mongoose = require("mongoose")
 const AuthRegisterSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: [true, "Username berilmagan"],
+        required: [true, "Username berlmagan"],
         minLength: [3, "Username qamida 3 ta harfdan iborat bo'lsin"],
         maxLength: [16, "Username ko'pi bilan 16 ta harfdan iborat bo'lsin"],
         trim: true
@@ -18,7 +18,7 @@ const AuthRegisterSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: [true, "Password berilmagan"],
+        required: [false, "Password"],
         minlength: [8, "Parol kamida 8 ta belgidan iborat bo'lishi kerak"]
     },
     otp: {

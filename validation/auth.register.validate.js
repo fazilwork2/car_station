@@ -32,5 +32,5 @@ exports.authRegisterValidate = (data) => {
             })
     })
 
-    return schema.validate(data, { abortEarly: false })
+    return schema.validate(data)
 }

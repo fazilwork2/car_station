@@ -2,3 +2,38 @@
 [32m{"level":"info","message":"register success: fazilura@gmail.com"}[39m
 [32m{"level":"info","message":"verified success: fazilura@gmail.com"}[39m
 [31m{"level":"error","message":"register error for fazilura@gmail.com"}[39m
+[31m{"level":"error","message":"getAll cars error for undefined : email is not defined"}[39m
+[32m{"level":"info","message":"all cars success"}[39m
+[32m{"level":"info","message":"all cars success"}[39m
+[31m{"level":"error","message":"login password error for fazilura@gmail.com : secretOrPrivateKey must have a value"}[39m
+[32m{"level":"info","message":"Login success: fazilura@gmail.com"}[39m
+[32m{"level":"info","message":"Login success: fazilura@gmail.com"}[39m
+[32m{"level":"info","message":"Login success: fazilura@gmail.com"}[39m
+[32m{"level":"info","message":"Login success: faziluradwa@gmail.com"}[39m
+[31m{"level":"error","message":"login password error for faziluradwa@gmail.com : Wrong password or email isn't verified"}[39m
+[31m{"level":"error","message":"login password error for faziluradwa@gmail.com : Wrong password or email isn't verified"}[39m
+[31m{"level":"error","message":"login password error for faziluradwa@gmail.com : Wrong password or email isn't verified"}[39m
+[32m{"level":"info","message":"Login success: faziluradwa@gmail.com"}[39m
+[32m{"level":"info","message":"all cars success"}[39m
+[32m{"level":"info","message":"add car success"}[39m
+[31m{"level":"error","message":"verify error Wrong otp"}[39m
+[31m{"level":"error","message":"verify error Otp expired"}[39m
+[31m{"level":"error","message":"verify error Otp expired"}[39m
+[31m{"level":"error","message":"verify error User not found"}[39m
+[31m{"level":"error","message":"verify error Otp expired"}[39m
+[32m{"level":"info","message":"verified success: fazilura@gmail.com"}[39m
+[32m{"level":"info","message":"add car success"}[39m
+[32m{"level":"info","message":"code has been sended success"}[39m
+[32m{"level":"info","message":"add car success"}[39m
+[32m{"level":"info","message":"code has been sended success"}[39m
+[32m{"level":"info","message":"all cars success"}[39m
+[31m{"level":"error","message":"dealet car error"}[39m
+[31m{"level":"error","message":"dealet car error"}[39m
+[31m{"level":"error","message":"dealet car error"}[39m
+[31m{"level":"error","message":"dealet car error"}[39m
+[32m{"level":"info","message":"code has been sended success"}[39m
+[31m{"level":"error","message":"uppdate car error"}[39m
+[31m{"level":"error","message":"uppdate car error"}[39m
+[32m{"level":"info","message":"code has been sended success"}[39m
+[32m{"level":"info","message":"Resend new code success: fazilura@gmail.com"}[39m
+[32m{"level":"info","message":"all users success"}[39m

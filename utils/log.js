@@ -3,7 +3,7 @@ const { createLogger, format, transports } = require("winston");
 require("winston-mongodb");
 
 const transportOptions = {
-  db: "mongodb+srv://fsadikov574:0NOYtSKicb6NFivX@cluster0.unqrha0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+  db: process.env.MONGODB_LINK,
   collection: "log",
 };
 

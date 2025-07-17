@@ -1,14 +1,15 @@
 const { carsModule } = require("../schema/cars.schema");
+const logger = require("../utils/log");
 
 const getAllCars = async (req, res, next) => {
   try {
     const cars = await carsModule.find();
 
-    logger.info(`code has been sended success: ${email}`);
+    logger.info(`all cars success`);
     res.status(200).json({ cars });
 
   } catch (error) {
-    logger.error(`getAll cars error for ${req.body?.email} : ${error.message}`);
+    logger.error(`getAll cars error for `);
     next(error);
   }
 };
@@ -18,10 +19,10 @@ const getCarsbyCategori = async (req, res, next) => {
     const { marca } = req.params;
     const cars = await carsModule.find({ marca: marca });
     
-    logger.info(`code has been sended success: ${email}`);
+    logger.info(`code has been sended success`);
     res.status(200).json({ cars });
   } catch (error) {
-    logger.error(`get cars by categori error for ${req.body?.email} : ${error.message}`);
+    logger.error(`get cars by categori error`);
     next(error);
   }
 };
@@ -55,10 +56,10 @@ const addcar = async (req, res, next) => {
     });
 
     
-    logger.info(`code has been sended success: ${email}`);
+    logger.info(`add car success`);
     res.status(201).json({ message: "Added new car" });
   } catch (error) {
-    logger.error(`add care error for ${req.body?.email} : ${error.message}`);
+    logger.error(`add care error`);
     next(error);
   }
 };
@@ -75,10 +76,10 @@ const getOnecar = async (req, res, next) => {
     }
 
     
-    logger.info(`code has been sended success: ${email}`);
+    logger.info(`code has been sended success`);
     res.status(200).json(car);
   } catch (error) {
-    logger.error(`get one care error for ${req.body?.email} : ${error.message}`);
+    logger.error(`get one care error for`);
     next(error);
   }
 };
@@ -99,7 +100,7 @@ const updatecar = async (req, res, next) => {
       desc,
     } = req.body;
 
-    const car = await carModel.findById(id);
+    const car = await carsModule.findById(id);
 
     if (!car) {
       return res.status(404).json({
@@ -107,7 +108,7 @@ const updatecar = async (req, res, next) => {
       });
     }
 
-    await carModel.findByIdAndUpdate(id, {
+    await carsModule.findByIdAndUpdate(id, {
       title,
       Tanirovkasi,
       price,
@@ -121,12 +122,12 @@ const updatecar = async (req, res, next) => {
     });
 
     
-    logger.info(`code has been sended success: ${email}`);
+    logger.info(`code has been sended success`);
     res.status(201).json({
       message: "car updated",
     });
   } catch (error) {
-    logger.error(`uppdate car error for ${req.body?.email} : ${error.message}`);
+    logger.error(`uppdate car error`);
     next(error);
   }
 };
@@ -134,7 +135,7 @@ const updatecar = async (req, res, next) => {
 const deletecar = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const car = await carModel.findById(id);
+    const car = await carsModule.findById(id)
 
     if (!car) {
       return res.status(404).json({
@@ -142,14 +143,14 @@ const deletecar = async (req, res, next) => {
       });
     }
 
-    await carModel.findByIdAndDelete(id);
+    await carsModule.findByIdAndDelete(id);
     
-    logger.info(`code has been sended success: ${email}`);
+    logger.info(`code has been sended success`);
     res.status(200).json({
       message: "car deleted",
     });
   } catch (error) {
-    logger.error(`dealet car error for ${req.body?.email} : ${error.message}`);
+    logger.error(`dealet car error`);
     next(error);
   }
 };
